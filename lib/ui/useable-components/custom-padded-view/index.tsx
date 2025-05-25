@@ -8,7 +8,7 @@ export default function CustomPaddedView({
   return (
     <div
       {...props}
-      style={{ padding: 12 }}
+      style={{ padding: 4 }}
     >
       {children}
     </div>

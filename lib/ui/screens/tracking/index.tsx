@@ -1,3 +1,5 @@
+import ScreenContainer from "../../useable-components/screen-container";
+
 export default function TrackingScreen() {
-  return <div className="flex flex-col h-full w-full">HIII track</div>;
+  return <ScreenContainer>HIII track</ScreenContainer>;
 }

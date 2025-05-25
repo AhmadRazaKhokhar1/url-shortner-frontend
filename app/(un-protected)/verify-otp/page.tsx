@@ -1,4 +1,4 @@
-import VerifyOtpScreen from "@/lib/ui/screens/verif-otp";
+import { VerifyOtpScreen } from "@/lib";
 
 export default function VerifyOtpPage() {
   return <VerifyOtpScreen />;

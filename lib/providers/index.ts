@@ -1,1 +1,1 @@
-export * from './index';
+export { default as AuthProvider } from "./auth.provider";

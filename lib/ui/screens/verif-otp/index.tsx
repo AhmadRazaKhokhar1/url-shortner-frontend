@@ -1,10 +1,11 @@
 import { VerifyOtpHeader, VerifyOtpMain } from "../../screen-components";
+import ScreenContainer from "../../useable-components/screen-container";
 
 export default function VerifyOtpScreen() {
   return (
-    <div className="w-full h-full flex flex-row justify-between items-center">
+    <ScreenContainer>
       <VerifyOtpHeader />
       <VerifyOtpMain />
-    </div>
+    </ScreenContainer>
   );
 }

@@ -1,7 +1,8 @@
 "use client";
 
 // Lib
-import { ApolloClientProvider, AuthGuard, AuthProvider } from "@/lib";
+import { ApolloClientProvider, AuthGuard, AuthProvider, MainLayout } from "@/lib";
+
 
 // Core
 import { ReactNode } from "react";
@@ -9,12 +10,14 @@ import { ReactNode } from "react";
 // Toast
 import { Toaster } from "react-hot-toast";
 
-export default function MainLayout({ children }: { children: ReactNode }) {
+export default function ProtectedLayout({ children }: { children: ReactNode }) {
   return (
     <AuthGuard>
       <Toaster />
       <ApolloClientProvider>
-        <AuthProvider>{children}</AuthProvider>
+        <AuthProvider>
+          <MainLayout>{children}</MainLayout>
+        </AuthProvider>
       </ApolloClientProvider>
     </AuthGuard>
   );

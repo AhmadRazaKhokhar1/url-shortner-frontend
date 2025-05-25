@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { JSX, ReactNode, useEffect, useState } from "react";
+import { AppBarSkeleton } from "../ui";
 
 export default function AuthGuard({
   children,
@@ -21,7 +22,7 @@ export default function AuthGuard({
     }
   }, [router]);
 
-  if (!authorized) return <>loading......</>;
+  if (!authorized) return <AppBarSkeleton />;
 
   return <>{children}</>;
 }

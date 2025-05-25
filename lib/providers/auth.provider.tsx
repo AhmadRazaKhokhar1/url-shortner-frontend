@@ -12,6 +12,7 @@ import {
 } from "react";
 
 // Hooks
+import { API_ENDPOINT } from "@/utils/constants";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
@@ -23,18 +24,20 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
 
   // States
   const [userId, setUserId] = useState("");
+  const [tokens, setTokens] = useState({
+    accessToken: "",
+    refreshToken: "",
+  });
 
   // Hooks
   const router = useRouter();
 
   // Handlers
   const handleLogin = async (email: string, name: string) => {
-    console.log("🚀 ~ handleLogin ~ email:", email);
     try {
       loadingToastId = toast.loading("Please wait while we log you in");
-      console.log("🚀 ~ handleLogin ~ loadingToastId:", loadingToastId);
       const resp = await fetch(
-        "http://localhost:8080/auth/password-less-entry",
+        `${API_ENDPOINT.LOCAL.BASE_URL}/auth/password-less-entry`,
         {
           method: "POST",
           headers: {
@@ -47,7 +50,7 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
       localStorage.setItem("userId", response._id);
       localStorage.setItem("email", response.email);
       toast.remove(loadingToastId);
-      toast.success("Logged in successfully");
+      toast.success(`An OTP has been sent at: ${response.email} `);
       if (response?._id) {
         router.push("/verify-otp");
       }
@@ -72,24 +75,78 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const handleVerifyOtp = () => {
+  const handleVerifyOtp = async (otp: number) => {
     try {
+      loadingToastId = toast.loading("Please wait while we log you in");
+      const localUserId = localStorage.getItem("userId");
+      const currentUserId = userId || localUserId;
+      if (!currentUserId) {
+        console.log({ userId, localUserId });
+        router.push("/login");
+      }
+      const resp = await fetch(
+        `${API_ENDPOINT.LOCAL.BASE_URL}/auth/otp-verification`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userId: currentUserId,
+            otp,
+          }),
+        },
+      );
+      const response = await resp.json();
+      const { accessToken, refreshToken } = response;
+      console.log(
+        "🚀 ~ handleVerifyOtp ~ accessToken, refreshToken:",
+        accessToken,
+        refreshToken,
+      );
+      if (accessToken && refreshToken) {
+        localStorage.setItem("accessToken", accessToken);
+        localStorage.setItem("refreshToken", refreshToken);
+        setTokens({ accessToken, refreshToken });
+      }
+      toast.remove(loadingToastId);
+      if (response?.success) {
+        toast.success(response?.message);
+        router.push("/");
+      } else if (!response?.success) {
+        toast.error(response?.message);
+        router.push("/login");
+      }
     } catch (error) {
+      localStorage.clear();
       toast.remove(loadingToastId);
       toast.error("An error occured while verifying OTP");
-      console.log(error);
+      console.error(error);
     }
   };
 
   // UseEffects
   useEffect(() => {
     const user_id = localStorage.getItem("userId");
-    if (user_id) {
+    if (user_id && !userId) {
       setUserId(user_id);
     }
-  }, [userId]);
+  }, []);
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
+    const refreshToken = localStorage.getItem("refreshToken");
+    if (accessToken && refreshToken) {
+      setTokens({
+        accessToken,
+        refreshToken,
+      });
+    }
+  }, []);
   return (
-    <AuthContext.Provider value={{ userId, handleLogin, handleLogout }}>
+    <AuthContext.Provider
+      value={{ userId, handleLogin, handleLogout, handleVerifyOtp }}
+    >
       {children}
     </AuthContext.Provider>
   );

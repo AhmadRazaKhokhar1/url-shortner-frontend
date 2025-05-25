@@ -3,12 +3,14 @@
 // Hooks
 import { useAuth } from "@/lib/providers/auth.provider";
 
-// Toast
-
-// Components
+// Formik & Schema
 import { loginFormSchema } from "@/utils/formik-schemas/login-form";
 import { Form, Formik } from "formik";
+
+// Components
 import { CustomPaddedView, SubHeading } from "../../useable-components";
+import CustomButton from "../../useable-components/custom-button";
+
 
 export default function LoginMain() {
   // Initial Values
@@ -62,12 +64,11 @@ export default function LoginMain() {
                   {errors.email}
                 </span>
               )}
-              <button
+              <CustomButton
+                title="Sign In"
                 type="submit"
-                className="w-full px-6 py-4 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 text-white font-bold rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-transparent"
-              >
-                Sign In
-              </button>
+                style={{width:"100%"}}
+              />
             </Form>
           );
         }}

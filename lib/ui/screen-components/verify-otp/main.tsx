@@ -1,5 +1,6 @@
 "use client";
 
+import { useAuth } from "@/lib/providers/auth.provider";
 // Hooks
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -7,16 +8,25 @@ import { useEffect, useState } from "react";
 // React OTP Input
 import OtpInput from "react-otp-input";
 
+// Components
+import CustomButton from "../../useable-components/custom-button";
+
 export default function VerifyOtpMain() {
-    // Local Storage
-    const email = localStorage.getItem("email")
+  // Local Storage
+  const email = localStorage.getItem("email");
   // States
   const [otp, setOtp] = useState("");
 
   // Hooks
-
+  const { handleVerifyOtp } = useAuth();
   const router = useRouter();
 
+  // Handlers
+  const handleVerifyOtpLocal = async () => {
+    await handleVerifyOtp(Number(otp));
+  };
+
+  // UseEffects
   useEffect(() => {
     if (!email) {
       return router.replace("/login");
@@ -24,9 +34,9 @@ export default function VerifyOtpMain() {
   }, [email]);
   return (
     <div className="flex flex-col justify-center items-center w-full h-full p-4">
-      <p className="text-base text-gray-700 dark:text-gray-200 text-center mb-4">
+      <p className="text-base text-gray-300 dark:text-gray-700 text-center mb-4">
         Enter your one time password sent at:&nbsp;
-        <span className="underline underline-offset-4 decoration-blue-400 text-md font-semibold text-blue-600 dark:text-blue-300">
+        <span className=" text-md font-semibold text-blue-600 dark:text-blue-600">
           {email}
         </span>
       </p>
@@ -56,6 +66,11 @@ export default function VerifyOtpMain() {
             type="number"
           />
         )}
+      />
+
+      <CustomButton
+        title="Verify"
+        onClick={handleVerifyOtpLocal}
       />
     </div>
   );

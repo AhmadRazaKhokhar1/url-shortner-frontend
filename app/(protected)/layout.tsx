@@ -1,10 +1,7 @@
 "use client";
 
-// Guards
-import { AuthGuard } from "@/lib/guards";
-
-// Providers
-import { AuthProvider } from "@/lib/providers";
+// Lib
+import { ApolloClientProvider, AuthGuard, AuthProvider } from "@/lib";
 
 // Core
 import { ReactNode } from "react";
@@ -16,7 +13,9 @@ export default function MainLayout({ children }: { children: ReactNode }) {
   return (
     <AuthGuard>
       <Toaster />
-      <AuthProvider>{children}</AuthProvider>
+      <ApolloClientProvider>
+        <AuthProvider>{children}</AuthProvider>
+      </ApolloClientProvider>
     </AuthGuard>
   );
 }

@@ -8,6 +8,7 @@ export default function CustomPaddedView({
   return (
     <div
       {...props}
+      className="dark:bg-[#09182f] bg-white"
       style={{ padding: 4 }}
     >
       {children}

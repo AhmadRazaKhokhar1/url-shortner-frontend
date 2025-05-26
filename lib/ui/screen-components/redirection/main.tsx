@@ -2,11 +2,9 @@
 
 // Hooks
 import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export default function RedirectionMain() {
-  // States
-  const [originalUrl, setOriginalUrl] = useState("");
 
   // Hooks
   const { id } = useParams();

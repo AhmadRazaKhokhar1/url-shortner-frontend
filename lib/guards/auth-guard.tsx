@@ -2,18 +2,21 @@
 
 import { useRouter } from "next/navigation";
 import { JSX, ReactNode, useEffect, useState } from "react";
-import { AppBarSkeleton } from "../ui";
+import { AppBarSkeleton, HomeSkeleton } from "../ui";
 
 export default function AuthGuard({
   children,
 }: {
   children: ReactNode;
 }): JSX.Element | null {
+
+  // States
   const router = useRouter();
   const [authorized, setAuthorized] = useState(false);
 
+
+  // UseEffects
   useEffect(() => {
-    // Ensure this runs only on the client
     const userId = localStorage.getItem("userId");
     if (!userId) {
       router.replace("/login");
@@ -22,7 +25,13 @@ export default function AuthGuard({
     }
   }, [router]);
 
-  if (!authorized) return <AppBarSkeleton />;
+if (!authorized)
+    return (
+      <div className="flex flex-col justify-between items-center">
+        <AppBarSkeleton />
+        <HomeSkeleton />
+      </div>
+    );
 
   return <>{children}</>;
 }

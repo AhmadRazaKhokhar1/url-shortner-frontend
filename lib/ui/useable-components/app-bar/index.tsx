@@ -1,4 +1,5 @@
-"use client"
+"use client";
+import Link from "next/link";
 // Hooks
 
 // Icons
@@ -8,12 +9,15 @@ import { FiLinkedin } from "react-icons/fi";
 export default function AppBar() {
   return (
     <nav
-      className={` top-0 left-0 right-0 z-50 transition-all duration-500 dark:bg-white bg-[#09182f]  shadow-md shadow-slate-400`}
+      className={` top-0 left-0 right-0 z-50 transition-all duration-500 shadow-md shadow-slate-400`}
     >
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 b">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center space-x-3 group cursor-pointer">
+          <Link
+            href={"/"}
+            className="flex items-center space-x-3 group cursor-pointer"
+          >
             <div className="relative">
               <div className="w-10 h-10 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-2xl group-hover:shadow-purple-500/25 transition-all duration-300 group-hover:scale-110">
                 <span className="text-white font-bold text-lg">T</span>
@@ -23,7 +27,7 @@ export default function AppBar() {
             <span className="text-xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-300">
               Tiny URL
             </span>
-          </div>
+          </Link>
 
           {/* Profile and Social Links */}
           <div className="flex items-center space-x-4">
@@ -59,7 +63,9 @@ export default function AppBar() {
                 <p className="text-sm font-semibold text-gray-800">
                   Ahmad Raza Khokhar
                 </p>
-                <p className="text-xs text-gray-600">Software Engineer | MERN | React Native</p>
+                <p className="text-xs text-gray-600">
+                  Software Engineer | MERN | React Native
+                </p>
               </div>
             </div>
           </div>

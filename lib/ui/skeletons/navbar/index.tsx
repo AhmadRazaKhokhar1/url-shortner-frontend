@@ -3,7 +3,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 
 export default function NavBarSkeleton() {
   return (
-    <nav className="top-0 left-0 right-0 z-50 dark:bg-white bg-[#09182f] backdrop-blur-md border-b border-white/20 shadow-xl">
+    <nav className="top-0 left-0 right-0 z-50 backdrop-blur-md border-b border-white/20 shadow-xl">
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center space-x-3">

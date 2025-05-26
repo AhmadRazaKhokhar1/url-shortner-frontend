@@ -34,9 +34,9 @@ export default function VerifyOtpMain() {
   }, [email]);
   return (
     <div className="flex flex-col justify-center items-center w-full h-full p-4">
-      <p className="text-base text-gray-300 dark:text-gray-700 text-center mb-4">
+      <p className="text-base text-gray-700 text-center mb-4">
         Enter your one time password sent at:&nbsp;
-        <span className=" text-md font-semibold text-blue-600 dark:text-blue-600">
+        <span className=" text-md font-semibold text-blue-600">
           {email}
         </span>
       </p>

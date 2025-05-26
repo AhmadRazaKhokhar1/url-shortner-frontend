@@ -1,3 +1,6 @@
+// Components
+import { ScreenHeader } from "../../useable-components";
+
 export default function HomeHeader() {
-  return <></>;
+  return <ScreenHeader title="Welcome!" />
 };

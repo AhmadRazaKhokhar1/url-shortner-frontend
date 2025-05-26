@@ -1,7 +1,12 @@
 import { gql } from "@apollo/client";
 
-export const GET_ALL_TINY_URLSs=gql`mutation TestMutation{
-    testMutation{
-        a
+export const MAKE_TINY_URL = gql`
+  mutation MakeTinyUrl($input: TinyUrlInput!) {
+    makeTinyUrl(input: $input) {
+      originalUrl
+      shortUrl
+      clicksCount
+      userId
     }
-}`
+  }
+`;

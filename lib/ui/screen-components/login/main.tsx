@@ -34,7 +34,7 @@ export default function LoginMain() {
       >
         {({ setFieldValue, errors, values }) => {
           return (
-            <Form className="max-w-md mx-auto space-y-6 rounded-xl border border-gray-300 p-4 my-auto">
+            <Form className="max-w-lg mx-auto space-y-8 rounded-xl border border-gray-300 shadow-lg p-6 my-auto">
               <SubHeading title="Enter Details" />
               <input
                 type="text"

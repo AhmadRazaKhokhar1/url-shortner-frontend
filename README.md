@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ⚡ URL Shortener Frontend – Built with Next.js, Tailwind CSS & TypeScript
 
-## Getting Started
+A lightning-fast frontend for the [URL Shortener Backend](https://github.com/AhmadRazaKhokhar1/url-shortner-backend), built using **Next.js**, **TypeScript**, **Tailwind CSS**, **Formik**, and **Skeleton Loaders**. Developed and maintained by [Ahmad Raza Khokhar](https://www.linkedin.com/in/ahmad-raza-khokhar/), this project offers a production-grade, modern UI with real-world practices.
 
-First, run the development server:
+![Stars](https://img.shields.io/github/stars/AhmadRazaKhokhar1/url-shortner-frontend?style=social)
+![Forks](https://img.shields.io/github/forks/AhmadRazaKhokhar1/url-shortner-frontend?style=social)
 
-```bash
+---
+
+## 🧠 Overview
+
+This frontend works hand-in-hand with the backend URL shortening service. It’s built with scalability, speed, and user experience in mind:
+
+- 🔗 Shorten URLs with a clean, responsive interface
+- 🔐 OTP-based passwordless login
+- 💨 Blazing-fast performance with skeleton loading
+- 📦 Clean folder structure and reusable components
+- 📱 Mobile-first responsive design
+
+---
+
+## 🛠 Tech Stack
+
+- **Next.js** – Full-stack React framework
+- **TypeScript** – Type-safe, scalable code
+- **Tailwind CSS** – Utility-first styling
+- **Formik** – Robust form management and validation
+- **Skeleton Components** – Better UX during loading
+- **App Router** – Modern routing in Next.js
+
+---
+🚀 Getting Started
+1. Clone the repository
+bash
+Copy
+Edit
+git clone https://github.com/AhmadRazaKhokhar1/url-shortner-frontend.git
+cd url-shortner-frontend
+2. Install dependencies
+bash
+Copy
+Edit
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+3. Run the development server
+bash
+Copy
+Edit
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Visit http://localhost:3000 to open the app in your browser.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+📦 Build for Production
+To generate a production-ready build:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+bash
+Copy
+Edit
+npm run build
+npm start
+🔗 Connects With
+This project is designed to work seamlessly with the backend repo:
+👉 URL Shortener Backend
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Make sure to have your backend running before using the frontend!
 
-## Learn More
+bash
+Copy
+Edit
+cd ../url-shortner-backend
+docker compose up --build --watch
+👨‍💻 About the Developer
+Hi, I’m Ahmad Raza Khokhar – a full-stack developer passionate about building scalable, modern web and mobile applications.
+If you liked this project or found it useful, do consider giving it a ⭐ star and connect with me online:
 
-To learn more about Next.js, take a look at the following resources:
+🔗 LinkedIn: linkedin.com/in/ahmad-raza-khokhar
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+💻 GitHub: github.com/AhmadRazaKhokhar1
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Let’s connect and grow together in tech 🚀
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+📃 License
+This project is licensed under the MIT License.

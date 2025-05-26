@@ -24,10 +24,6 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
 
   // States
   const [userId, setUserId] = useState("");
-  const [tokens, setTokens] = useState({
-    accessToken: "",
-    refreshToken: "",
-  });
 
   // Hooks
   const router = useRouter();
@@ -101,7 +97,6 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
       if (accessToken && refreshToken) {
         localStorage.setItem("accessToken", accessToken);
         localStorage.setItem("refreshToken", refreshToken);
-        setTokens({ accessToken, refreshToken });
       }
       toast.remove(loadingToastId);
       if (response?.success) {
@@ -125,18 +120,7 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
     if (user_id && !userId) {
       setUserId(user_id);
     }
-  }, []);
-
-  useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken");
-    const refreshToken = localStorage.getItem("refreshToken");
-    if (accessToken && refreshToken) {
-      setTokens({
-        accessToken,
-        refreshToken,
-      });
-    }
-  }, []);
+  }, [userId]);
   return (
     <AuthContext.Provider
       value={{ userId, handleLogin, handleLogout, handleVerifyOtp }}

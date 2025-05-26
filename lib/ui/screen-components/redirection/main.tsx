@@ -2,15 +2,16 @@
 
 // Hooks
 import { useParams } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export default function RedirectionMain() {
-
   // Hooks
   const { id } = useParams();
+  const isRedirected = useRef(false);
 
   // Handlers
   async function getOriginalUrl() {
+    isRedirected.current = true;
     try {
       const resp = await fetch(
         `http://localhost:8080/redirect-to-tiny-url?shortUrl=${id}`,
@@ -29,10 +30,10 @@ export default function RedirectionMain() {
 
   // UseEffects
   useEffect(() => {
-    if (id) {
+    if (id && !isRedirected.current) {
       getOriginalUrl();
     }
-  }, [id]);
+  }, []);
   return (
     <div className="flex flex-col w-full h-full m-auto text-center">
       <span className=" text-">

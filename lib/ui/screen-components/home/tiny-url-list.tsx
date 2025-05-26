@@ -19,7 +19,7 @@ export default function TinyUrlList() {
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
   // Queries
-  const { data: tinyUrls, loading } = useQuery(GET_ALL_TINY_URLS, {
+  const { data: tinyUrls } = useQuery(GET_ALL_TINY_URLS, {
     variables: { userId },
     skip: !userId,
   }) as QueryResult<

@@ -51,7 +51,6 @@ export default function HomeMain() {
           input: { originalUrl, userId },
         },
       });
-      console.log("🚀 ~ handleSubmit ~ data:", data);
       setTinyUrl(data?.data?.tinyUrl ?? "");
       toast.success("Successfully created the tiny url");
     } catch (err) {

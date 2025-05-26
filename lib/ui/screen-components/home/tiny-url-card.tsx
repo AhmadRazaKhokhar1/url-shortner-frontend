@@ -15,7 +15,6 @@ export default function TinyUrlCard({
   copiedId: string;
   copyToClipboard: (url: string, id: string) => void;
 }) {
-  console.log("🚀 ~   url: ITinyUrl", url, copiedId);
   return (
     <div
       key={url._id}

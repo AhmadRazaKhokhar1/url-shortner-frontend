@@ -26,7 +26,6 @@ export default function TinyUrlList() {
     { getAllUrls: ITinyUrl[] } | undefined,
     { userId: string | undefined }
   >;
-  console.log("🚀 ~ TinyUrlList ~ tinyUrls:", tinyUrls);
 
   // const tinyUrls = [
   //   {

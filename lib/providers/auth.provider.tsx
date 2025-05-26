@@ -4,11 +4,11 @@ import { IAuthProviderProps } from "@/utils";
 
 // Core
 import {
-    createContext,
-    ReactNode,
-    useContext,
-    useEffect,
-    useState,
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
 } from "react";
 
 // Hooks
@@ -81,7 +81,6 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
       const localUserId = localStorage.getItem("userId");
       const currentUserId = userId || localUserId;
       if (!currentUserId) {
-        console.log({ userId, localUserId });
         router.push("/login");
       }
       const resp = await fetch(
@@ -99,11 +98,6 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
       );
       const response = await resp.json();
       const { accessToken, refreshToken } = response;
-      console.log(
-        "🚀 ~ handleVerifyOtp ~ accessToken, refreshToken:",
-        accessToken,
-        refreshToken,
-      );
       if (accessToken && refreshToken) {
         localStorage.setItem("accessToken", accessToken);
         localStorage.setItem("refreshToken", refreshToken);

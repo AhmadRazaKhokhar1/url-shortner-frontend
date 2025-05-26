@@ -1,16 +1,24 @@
 // Utils
-import { formatClicks, getClicksColor, shortenUrl } from "@/utils";
+import { formatClicks, getClicksColor, ITinyUrl, shortenUrl } from "@/utils";
 
 // Icons
 import { BiCheckCircle, BiCopy, BiTrendingUp } from "react-icons/bi";
 import { BsEye, BsLink } from "react-icons/bs";
 import { TbExternalLink } from "react-icons/tb";
 
-export default function TinyUrlCard({ url, copiedId, copyToClipboard }) {
-    
+export default function TinyUrlCard({
+  url,
+  copiedId,
+  copyToClipboard,
+}: {
+  url: ITinyUrl;
+  copiedId: string;
+  copyToClipboard: (url: string, id: string) => void;
+}) {
+  console.log("🚀 ~   url: ITinyUrl", url, copiedId);
   return (
     <div
-      key={url.id}
+      key={url._id}
       className="group bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.01]"
     >
       <div className="flex items-start justify-between">
@@ -36,7 +44,12 @@ export default function TinyUrlCard({ url, copiedId, copyToClipboard }) {
                   {location.origin?.concat("/".concat(url.shortUrl))}
                 </code>
                 <button
-                  onClick={() => copyToClipboard(location.origin.concat("/")?.concat(url.shortUrl), url._id)}
+                  onClick={() =>
+                    copyToClipboard(
+                      location.origin.concat("/")?.concat(url.shortUrl),
+                      url._id,
+                    )
+                  }
                   className="flex items-center space-x-1 px-3 py-1 bg-blue-500 hover:bg-blue-600 text-white rounded-md transition-colors duration-200 text-sm flex-shrink-0"
                 >
                   {copiedId === url._id ? (

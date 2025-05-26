@@ -116,7 +116,7 @@ export default function TinyUrlList() {
             <TinyUrlCard
               key={url?._id}
               copyToClipboard={copyToClipboard}
-              copiedId={copiedId}
+              copiedId={copiedId??""}
               url={url}
             />
           ))}
